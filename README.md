@@ -16,7 +16,7 @@ measured by the time-varying importance of higher order factors.*
 
 # Preparing datasets
 1. **Risk free rates**: Download `Yields at daily frequency for daily maturities` from [Discount Bond Database](https://www.discount-bond-data.org/) under the Yields section and make sure it is saved as `yield_panel_daily_frequency_daily_maturity.csv`. \
-Run the following code or run [data_supplement/generate_kernel_matrices.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/compile_daily_riskfree.ipynb) to obtain daily risk free rates implied by KR.
+Run the following code or run [data_supplement/compile_daily_riskfree.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/compile_daily_riskfree.ipynb) to obtain daily risk free rates implied by KR.
 ```python
 python3 ./source/get_riskfree.py 
 ```
