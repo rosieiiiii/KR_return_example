@@ -12,17 +12,27 @@ and term structure premium. Cash flows are covariances, as cash flows of coupon 
 explain the factor exposure. The term structure premium depends on the market complexity
 measured by the time-varying importance of higher order factors.*
 
+# Example to get started
 
 # Preparing datasets
-Download raw Treasury bond data from WRDS using (notebook)[...], (KR yields)[https://www.discount-bond-data.org/].
-Run the following code to preprocess data, and get supplement data needed to estimate returns.
+1. **Risk free rates**: Download `Yields at daily frequency for daily maturities` from [Discount Bond Database](https://www.discount-bond-data.org/) under the Yields section and make sure it is saved as `yield_panel_daily_frequency_daily_maturity.csv`. \
+Run the following code or run `data_supplement/generate_kernel_matrices.ipynb` to obtain daily risk free rates implied by KR.
 ```python
-python get_riskfree.py
+python3 ./source/get_riskfree.py 
 ```
+2. **Bond cashflows and prices**: Download and process raw Treasury bond data from WRDS using (notebook)[...], . Note that a WRDS account is needed to access CRSP data through WRDS. \
+Filters applied:
+   * Only includes fully taxable, non-callable, and non-flower bond issues.
+   * Certificates of deposit are excluded (ITYPE=3)
+   * Remove issues whose time series of prices terminate because of ''all exchanged'' (IWHY=3)
 
 # Estimate returns
 
-# Example to get started
+
+# Factors
+
+
+# Complexity measures
 
 
 # Suggested citation
