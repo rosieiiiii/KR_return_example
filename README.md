@@ -44,7 +44,10 @@ sh ./source/run_ret_daily.sh
 # Complexity measures
 In the paper, we introduce two novel measures for the state of the bond market.
 * **IT-VOL**: The Idiosyncratic Treasury Volatility (IT-VOL) measures the idiosyncratic volatility normalized by the overall volatility. It captures how hard it is to explain the observed bond returns even with a flexible model.
-* **T-COM**: The Treasury Market Complexity (T-COM) measures the complexity of the bond market. It captures how much variation is explained by higher order term structure factors.
+![IT-VOL](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/IT_VOL.png)
+* **T-COM**: The Treasury Market Complexity (T-COM) measures the complexity of the bond market. It captures how much variation is explained by higher order term structure factors. 
+![T-COM](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/T-COM.png)
+
 
 
 # Suggested citation
