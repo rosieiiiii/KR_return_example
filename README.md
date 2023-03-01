@@ -19,8 +19,8 @@ The figure below shows the fitted excess return of underlying securities and fit
 ![2013_rx](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/2013_excess_return.png)
 
 # Preparing datasets
-1. **Risk free rates** and **discount curve**: Download `Yields at daily frequency for daily maturities` from [Discount Bond Database](https://www.discount-bond-data.org/) under the Yields section and make sure it is saved as `yield_panel_daily_frequency_daily_maturity.csv`. \
-Run the following code or run [compile_daily_riskfree.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/compile_daily_riskfree.ipynb) to obtain daily discount curve and risk free rates.
+1. **Risk free rates** and **discount curve**: Download `Yields at daily frequency for daily maturities` from [Discount Bond Database](https://www.discount-bond-data.org/) under the `Yields` section and make sure it is saved as `yield_panel_daily_frequency_daily_maturity.csv` in the main directory. \
+Run the following code or follow [compile_daily_riskfree.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/compile_daily_riskfree.ipynb) to obtain daily discount curve and risk free rates.
 ```python
 python3 ./source/get_g_and_riskfree.py 
 ```
@@ -31,18 +31,28 @@ Filters applied:
    * Remove issues whose time series of prices terminate because of ''all exchanged'' (IWHY=3).
    * Follow Gurkaynak, Sack, and Wright (2007) and Liu and Wu (2021) and exclude the two most recently issued securities with maturities of 2, 3, 4, 5, 7 and 10 years for securities issued in 1980 or later.
    * Retain only securities whose prices on the subsequent business day are available (this is because our analysis requires daily returns of securities).
-   
-3. **Maturity filter**, **duration** and **yield to maturity**: Run [calculate_duration_and_ytm.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/mask/calculate_duration_and_ytm.ipynb). Here, we obtain bond duration, yield to maturity and filter that removes securities maturing within 90 days for the fitting process ex-ante.
+Alternatively, run:
+```python
+python3 ./source/get_and_select_raw_data.py --username=<your_username>
+python3 ./source/get_input_price_and_cashflow.py
+```
+
+3. **Maturity filter**, **duration** and **yield to maturity**: Follow [calculate_duration_and_ytm.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/mask/calculate_duration_and_ytm.ipynb) to obtain bond duration, yield to maturity and filter that removes securities maturing within 90 days for the fitting process ex-ante.
+Alternatively, run:
+```python
+python3 ./source/get_duration_and_ytm.py
+```
 
 # Estimate returns
 Use KR model to estimate discount bond returns on multiple dates ([run_multiple_dates.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/run_multiple_dates.ipynb)). \
-Or run the following code for a large number of dates. Results for each date are saved separately and can be compiled in [read_ret_curve.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/KR_ret_models/read_ret_curve.ipynb).
+Or run the following code for a large number of dates. Results for each date are saved separately and can be compiled in [read_ret_curve.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/KR_ret_models/read_ret_curve.ipynb). The notebook also compiles factor returns.
 ```
 sh ./source/run_ret_daily.sh
 ```
 
 # KR Factors
-
+The KR factors imply profitable investment opportunities. Importantly, our KR factors and discount bonds are investable portfolios. In the figure below, we study the profitability of the factor portfolios and report the cumulative return and excess returns for the first four KR factors. The figure shows that the fourth factor carries a large risk premium.
+![cum_return_factors](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/cum_return_factors.png)
 
 # Complexity measures
 In the paper, we introduce two novel measures for the state of the bond market.
@@ -50,7 +60,7 @@ In the paper, we introduce two novel measures for the state of the bond market.
 ![IT-VOL](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/IT_VOL.png)
 * **T-COM**: The Treasury Market Complexity (T-COM) measures the complexity of the bond market. It captures how much variation is explained by higher order term structure factors. 
 ![T-COM](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/T-COM.png)
-Formally, we define IT-VOL as the percentage of unexplained variation by the KR-4 factor model, and T-COM is the difference between the explained variation with KR-1 and KR-4 factor. The unexplained cross-sectional variation of a factor model is normalized by the overall cross-sectional variation on that day. The figures above show the 3-month moving average of the two market condition measures.
+Formally, we define IT-VOL as the percentage of unexplained variation by the KR-4 factor model, and T-COM is the difference between the explained variation with KR-1 and KR-4 factor. The unexplained cross-sectional variation of a factor model is normalized by the overall cross-sectional variation on that day. The figures above show the 3-month moving average of the two market condition measures.  Follow [complexity_measure](https://github.com/rosieiiiii/KR_return_example/blob/main/KR_ret_models/complexity_measure.ipynb) for more details in computing the two measures.
 
 
 
