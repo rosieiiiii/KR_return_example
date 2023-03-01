@@ -15,6 +15,9 @@ measured by the time-varying importance of higher order factors.*
 # Example to get started
 [KR_return_example.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/KR_return_example.ipynb) provides an example of using the KR model for discount bond return estimation using formatted U.S. Treasury data on two example dates. This notebook can be run directly on Google Colab without having to download data to a local machine.
 
+The figure below shows the fitted excess return of underlying securities and fitted excess return curve on 2013-12-31 relative to the next business day, 2014-01-02. 
+![2013_rx](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/2013_excess_return.png)
+
 # Preparing datasets
 1. **Risk free rates** and **discount curve**: Download `Yields at daily frequency for daily maturities` from [Discount Bond Database](https://www.discount-bond-data.org/) under the Yields section and make sure it is saved as `yield_panel_daily_frequency_daily_maturity.csv`. \
 Run the following code or run [compile_daily_riskfree.ipynb](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/compile_daily_riskfree.ipynb) to obtain daily discount curve and risk free rates.
