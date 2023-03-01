@@ -60,7 +60,7 @@ In the paper, we introduce two novel measures for the state of the bond market.
 ![IT-VOL](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/IT_VOL.png)
 * **T-COM**: The Treasury Market Complexity (T-COM) measures the complexity of the bond market. It captures how much variation is explained by higher order term structure factors. 
 ![T-COM](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/T-COM.png)
-Formally, we define IT-VOL as the percentage of unexplained variation by the KR-4 factor model, and T-COM is the difference between the explained variation with KR-1 and KR-4 factor. The unexplained cross-sectional variation of a factor model is normalized by the overall cross-sectional variation on that day. The figures above show the 3-month moving average of the two market condition measures.  Follow [complexity_measure](https://github.com/rosieiiiii/KR_return_example/blob/main/KR_ret_models/complexity_measure.ipynb) for more details in computing the two measures.
+Formally, we define IT-VOL as the percentage of unexplained variation by the KR-4 factor model, and T-COM is the difference between the explained variation with KR-1 and KR-4 factor. The unexplained cross-sectional variation of a factor model is normalized by the overall cross-sectional variation on that day. The figures above show the 3-month moving average of the two market condition measures.  Follow [complexity_measure](https://github.com/rosieiiiii/KR_return_example/blob/main/complexity_measure.ipynb) for more details in computing the two measures.
 
 
 
