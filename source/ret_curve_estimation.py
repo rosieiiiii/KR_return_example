@@ -53,8 +53,9 @@ else:
     lst_R_fit=None
 
 ### where to save output
+rf_source = 'KR_LS'
 base_name='ret_curve_R_{}_alpha_{}_ridge_{}_RF_{}_{}_ver_{}'\
-    .format(args.R, args.alpha_fixed, args.l_fixed, args.rf_source, args.freq, args.idx_ver)
+    .format(args.R, args.alpha_fixed, args.l_fixed, rf_source, args.freq, args.idx_ver)
 
 dir_out=args.dir_out_base+base_name+'/'
 if not os.path.isdir(dir_out):
@@ -62,7 +63,7 @@ if not os.path.isdir(dir_out):
 print('*'*3 +'Save results to: '+ '*'*3+'\n'+dir_out)
 
 ### get path and load lookup table
-dir_B = './Data/B_max_ttm_10yr/'
+dir_B = './B_and_C/B_max_ttm_10yr/'
 df_t_lookup_freq=pd.read_pickle(dir_B+'df_t_lookup_{}.pkl'.format(args.freq))
 df_t_lookup_daily=pd.read_pickle(dir_B+'df_t_lookup_{}.pkl'.format('daily'))
 
@@ -180,18 +181,12 @@ def mp_discount_curve_solution(lst_t_freq):
         # assert C[:,:date_s-1].sum()==0
 
         # get return of securities
-        rf=(1+df_rf.loc[today])**date_s-1 # scalar
+        rf=(1+df_rf.loc[today_str])**date_s-1 # scalar
         ret=(Bc_shift-B)/B
         rx=ret-rf
 
         # get one-day excess return of zcb
         g=df_g_daily.iloc[t].values
-        # g_shift=df_g_daily.iloc[t+1].values
-        # g_shift_2=np.roll(g_shift,date_s)
-        # g_shift_2[:date_s]=1
-        # rx_g=(g_shift_2-g)/g-rf # the first (date_s-1) values are artificial and should be discarded
-
-        #C_tilde=C@np.diag(g[:Nmax])
 
         Z_bar=C[:,date_s-1:]@np.diag(g[date_s-1:Nmax]) # dim: (nt, Nmax-date_s+1)
         Z=Z_bar[:,1:] # dim: (nt, Nmax-date_s)

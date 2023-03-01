@@ -14,5 +14,5 @@ Nmax = y_KR.shape[1]
 g_KR = np.exp(-y_KR*np.arange(1,Nmax+1)/365)
 df_kr = (1/g_KR['1']-1).to_frame(name='KR_LS')
 
-g_KR.to_pickle('./data_supplement/df_riskfree_daily_all.pkl')
-df_kr.to_pickle('./data_supplement/df_kr_g.pkl')
+g_KR.to_pickle('../data_supplement/df_kr_g.pkl')
+df_kr.to_pickle('../data_supplement/df_riskfree_daily_all.pkl')
