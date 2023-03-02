@@ -51,7 +51,9 @@ sh ./source/run_ret_daily.sh
 ```
 
 # KR Factors
-The KR factors imply profitable investment opportunities. Importantly, our KR factors and discount bonds are investable portfolios. In the figure below, we study the profitability of the factor portfolios and report the cumulative return and excess returns for the first four KR factors. The figure shows that the fourth factor carries a large risk premium.
+The KR factors imply profitable investment opportunities. Importantly, our KR factors and discount bonds are investable portfolios. In the figure below, we study the profitability of the factor portfolios and report the cumulative return and excess returns for the first four KR factors. The figure shows that the fourth factor carries a large risk premium.  
+
+![cum_return_factors](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/cum_rx_factors.png)
 ![cum_return_factors](https://github.com/rosieiiiii/KR_return_example/blob/main/data_supplement/cum_return_factors.png)
 
 # Complexity measures
