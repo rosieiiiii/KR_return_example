@@ -1,11 +1,9 @@
 import pandas as pd
 import numpy as np
 import scipy.sparse as sps
-import matplotlib.pyplot as plt
 from IPython.display import display
 from datetime import datetime
 from pandas.tseries.offsets import *
-%matplotlib inline
 from itertools import groupby
 import pickle
 
@@ -15,12 +13,10 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-save_to_pickle = True
 generate_C = True
 mat_day = 3650 #time to maturity maturity cutoff
 
 # where to save formatted data
-os.chdir('..')
 dir_output = './B_and_C/' 
 # where to save B mat and date lookup tables
 dir_B = dir_output+'B_max_ttm_10yr/'
@@ -72,7 +68,6 @@ T = len(df_nomprc_bin.index)
 df_t_lookup = pd.DataFrame(index=df_nomprc.index,\
                          data=np.arange(0,T),columns=['t'])
 
-display(df_t_lookup.head())
 
 ### monthly lookup
 df_t_lookup['date'] = df_t_lookup.index
@@ -108,7 +103,6 @@ for i in range(0, len(df_info_dly)):
     
 ### Generate cashflow matrix
 print('mat_day cutoff:{}'.format(mat_day))
-print('generate_C:{}'.format(generate_C))
 print('T:{}'.format(T))
 print('nmax:{}'.format(nmax))
 print('num_kytreasno:{}'.format(num_kytreasno))
@@ -125,21 +119,16 @@ dict_par = {'T':T, 'Nmax':mat_day, 'Nmax_C':Nmax_C, 'nmax':nmax,\
             'num_kytreasno':num_kytreasno, 'prefix_C':prefix_C, 'npz_dir':npz_dir}
 
 # save date look-up table and dict_par
-if save_to_pickle:
-    df_t_lookup.to_pickle(dir_B + 'df_t_lookup_daily.pkl')
-    df_t_lookup_monthly.to_pickle(dir_B + 'df_t_lookup_monthly.pkl')
-    
-    with open(dir_B + 'dict_par.pkl','wb') as handle:
-        pickle.dump(dict_par,handle,protocol=pickle.HIGHEST_PROTOCOL)
-else:
-    print('not saved')
-    
+df_t_lookup.to_pickle(dir_B + 'df_t_lookup_daily.pkl')
+df_t_lookup_monthly.to_pickle(dir_B + 'df_t_lookup_monthly.pkl')
+
+with open(dir_B + 'dict_par.pkl','wb') as handle:
+    pickle.dump(dict_par,handle,protocol=pickle.HIGHEST_PROTOCOL)
 
     
-        
+    
     
 print('Generating price vector and cashflows matrix ...')
-#if save_to_pickle, WILL SAVE B_mat, ret_mat, ttm_day_mat AT THE END OF THIS BLOCK
 B_mat = np.zeros([nmax,T])
 Bc_shift_mat = np.zeros([nmax,T])
 B_shift_mat = np.zeros([nmax,T])
@@ -292,16 +281,14 @@ for t in range(T):
     pbar.update(1)
     
 
-if save_to_pickle:
-    np.save(dir_B + 'B_mat.npy', B_mat)
-    np.save(dir_B + 'Bc_shift_mat.npy', Bc_shift_mat)
-    np.save(dir_B + 'B_shift_mat.npy', B_shift_mat)
-    np.save(dir_B + 'ret_mat.npy', ret_mat)
-    np.save(dir_B + 'tdaccint_mat.npy', tdaccint_mat)
-    np.save(dir_B + 'kytreasno_mat.npy', kytreasno_mat)
-    np.save(dir_B + 'ttm_day_mat.npy', ttm_day_mat)
-    with open(dir_B + 'dict_B_kytreasno.pkl', 'wb') as handle:
-        pickle.dump(dict_B_kytreasno, handle, protocol=pickle.HIGHEST_PROTOCOL)
+np.save(dir_B + 'B_mat.npy', B_mat)
+np.save(dir_B + 'Bc_shift_mat.npy', Bc_shift_mat)
+np.save(dir_B + 'B_shift_mat.npy', B_shift_mat)
+np.save(dir_B + 'ret_mat.npy', ret_mat)
+np.save(dir_B + 'tdaccint_mat.npy', tdaccint_mat)
+np.save(dir_B + 'kytreasno_mat.npy', kytreasno_mat)
+np.save(dir_B + 'ttm_day_mat.npy', ttm_day_mat)
+with open(dir_B + 'dict_B_kytreasno.pkl', 'wb') as handle:
+    pickle.dump(dict_B_kytreasno, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-else:
-    print('not saved')      
+     
