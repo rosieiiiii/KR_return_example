@@ -11,7 +11,7 @@ from tqdm.auto import tqdm
 
 import utils
 
-dir_B = '../B_and_C/B_max_ttm_10yr/'
+dir_B = './B_and_C/B_max_ttm_10yr/'
 df_t_lookup_daily = pd.read_pickle(dir_B + 'df_t_lookup_daily.pkl')
 T = len(df_t_lookup_daily)
 
@@ -23,7 +23,7 @@ with open(dir_B+"dict_par.pkl", "rb") as handle:
 prefix_C,Nmax,nmax,dir_npz = [dict_par[key] for key in ['prefix_C','Nmax','nmax','npz_dir']]
 arr_h = np.arange(1,Nmax+1)
 
-dir_out = '../mask/'
+dir_out = './mask/'
 
 ### get time to maturity in day
 print('getting time to maturity in day ...')
@@ -34,7 +34,7 @@ pbar = tqdm(total=T-1)
 for t in range(T-1): 
 
     B = B_mat[:,t]
-    csr_mat_name = '.'+dir_npz+prefix_C+'C_'+str(t)+'.npz'
+    csr_mat_name = dir_npz+prefix_C+'C_'+str(t)+'.npz'
 
     csr_mat = sps.load_npz(csr_mat_name)
     nt = np.count_nonzero(B)
@@ -70,7 +70,7 @@ pbar = tqdm(total=T-1)
 for t in range(T-1):
 
     B = B_mat[:,t]
-    csr_mat_name = '.'+dir_npz+prefix_C+'C_'+str(t)+'.npz'
+    csr_mat_name = dir_npz+prefix_C+'C_'+str(t)+'.npz'
     csr_mat = sps.load_npz(csr_mat_name)
     
     nt = int(mat_nt[t])
