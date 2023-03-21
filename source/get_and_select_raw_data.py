@@ -21,8 +21,8 @@ args = parser.parse_args()
 
 
 ### Download raw data from WRDS
-dir_data = '../wrds_raw_data/' # where to save and read WRDS raw data
-dir_output = '../processed_data/' # where to save processed data output
+dir_data = './wrds_raw_data/' # where to save and read WRDS raw data
+dir_output = './processed_data/' # where to save processed data output
 
 if not os.path.exists(dir_data):
     os.makedirs(dir_data)
